@@ -2,6 +2,8 @@ import { personList } from "../../res/user.js";
 import validator from "validator";
 import path from 'path';
 
+let reqCount = 0;
+
 //get Data
 export const getData = (req, res) => {
     res.json(personList);
@@ -37,7 +39,6 @@ export const updateData = (req, res) => {
     } else {
         res.status(401).send('Error. Please click on resend');
     }
-
     res.status(200).send(personList);
 }
 
@@ -57,4 +58,10 @@ export const deleteData = (req, res) => {
 //delete Data get
 export const deleteDataGet = (req, res) => {
     res.json(personList);
+}
+
+export const middleware = (req, res, next) => {
+    reqCount++;
+    console.log('count = ', reqCount);
+    next();
 }
