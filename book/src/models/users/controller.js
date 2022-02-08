@@ -25,10 +25,10 @@ export const getData = (req, res) => {
 
 //create Data get
 export const createData = (req, res) => {
-    fs.appendFile(`./assets/${req.params.name}.txt`, req.body.text, (error) => {
+    fs.appendFile(`./assets/${req.params.name}.txt`, `${req.body.name}`, (error) => {
         if (error) res.status(500).send(err);
     });
-    res.satus(200).send("File written successfully");
+    res.status(200).send("File written successfully");
 }
 
 //delete Data get
